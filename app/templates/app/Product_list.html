@@ -1,0 +1,148 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Dashboard {% endblock title %}
+{% block main-content %}
+
+
+
+
+<section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+      <div class="menu ">
+        <ul class="list  ">
+          <li class="header">MAIN NAVIGATION</li>
+          <li class="active">
+            <a href="{% url 'dashboard' %}">
+              <i class="material-icons">dashboard</i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+  
+          <li>
+            <a href="{% url 'productlist' %}">
+              <i class="material-icons">inventory_2</i>
+              <span>Product List</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'orderlist' %}" class="">
+              <i class="material-icons"> sort</i>
+              <span>Order List</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'customerlist' %}" class="">
+              <i class="material-icons">manage_accounts</i>
+              <span>Customer</span>
+            </a>
+          </li>
+  
+          <li>
+            <a href="{% url 'userlist' %}" class="">
+              <i class="material-icons">person_add</i>
+              <span>User Account</span>
+            </a>
+          </li>
+  
+         
+          <li>
+            <a href="{% url 'order_report' %}">
+              <i class="material-icons">history</i>
+              <span>Report</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </section>
+  
+  <section class="content" id="top">
+    <div class="container-fluid">
+      <div class="block-header">
+        <h2>DASHBOARD</h2>
+      </div>
+  
+        <div class="row clearfix">
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <div class="header">
+                  <h2>PRODUCT LIST </h2>
+                </div>
+                <div
+                  class="table-responsive"
+                  style="overflow: auto; max-height: 500px"
+                >
+
+                <table class="table table-hover">
+                    <a href="{% url 'addproduct' %}" class="btn btn-success btn-lg">Add New Product</a>
+                    <thead>
+                        <tr>
+                            {% comment %} <th scope="col">SL</th> {% endcomment %}
+                            <th scope="col">ID</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Specifications</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Selling Price</th>
+                            <th scope="col">availability</th>
+                            <th scope="col">Product Image</th>
+                            <th scope="col">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr> 
+                           
+                            <td>{{product.id}}</td>
+                            <td>{{product.title}}</td>
+                            <td>{{product.spec}}</td>
+                            <td>{{product.description}}</td>
+                            <td>{{product.category}}</td>
+                            <td>{{product.brand}}</td>
+                            <td>{{product.selling_price}}</td>
+                            <td>{{product.availability}}</td>
+
+                            <td><img src="{{ product.product_image.url }}" alt="{{ product.title }} Image"
+                                    width="100">
+                            </td>
+                            <td><a href="{% url 'update_product' pk=product.pk %}"
+                                    class="btn btn-info btn-sm">Update</a>
+                                <hr>
+                                <a href="{% url 'delproduct' del_id=product.id %}"
+                                    class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        </tr>
+
+                        {% endfor %}
+
+                      
+                    </tbody>
+                </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock main-content %}

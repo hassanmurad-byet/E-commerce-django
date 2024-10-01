@@ -1,0 +1,143 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Dashboard {% endblock title %}
+{% block main-content %}
+
+
+
+<section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+      <div class="menu ">
+        <ul class="list  ">
+          <li class="header">MAIN NAVIGATION</li>
+          <li class="active">
+            <a href="{% url 'dashboard' %}">
+              <i class="material-icons">dashboard</i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+  
+          <li>
+            <a href="{% url 'productlist' %}">
+              <i class="material-icons">inventory_2</i>
+              <span>Product List</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'orderlist' %}" class="">
+              <i class="material-icons"> sort</i>
+              <span>Order List</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'customerlist' %}" class="">
+              <i class="material-icons">manage_accounts</i>
+              <span>Customer</span>
+            </a>
+          </li>
+  
+          <li>
+            <a href="{% url 'userlist' %}" class="">
+              <i class="material-icons">person_add</i>
+              <span>User Account</span>
+            </a>
+          </li>
+  
+          <li>
+            <a href="#">
+              <i class="">balance</i>
+              <span></span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'order_report' %}">
+              <i class="material-icons">history</i>
+              <span>Report</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </section>
+  
+  <section class="content" id="top">
+    <div class="container-fluid">
+      <div class="block-header">
+        <h2>DASHBOARD</h2>
+      </div>
+  
+        <div class="row clearfix">
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <div class="header">
+                  <h2>shipping_complete </h2>
+                </div>
+                <div
+                  class="table-responsive"
+                  style="overflow: auto; max-height: 500px"
+                >
+
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Customer Id</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Product Id</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Order Date</th>
+                            <th scope="col"> Status Update  </th>
+                      
+        
+                           
+        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in shipping_complete_orders %}
+                        <tr>
+                            <td><a href="{% url 'Ordercustomer_detail' order.customer.id %} " style="text-decoration: none;" class="btn btn-info">{{order.customer}}</a></td>
+                            <td>{{order.user}}</td>
+                            <td><a href="{% url 'Orderproduct_detail' order.product.id %}" style="text-decoration: none;" class="btn btn-info" >{{order.product}}</a></td>
+                            <td>{{order.quantity}}</td>
+                            <td>{{order.ordered_date}}</td>
+                            <td class="text-danger "> <a href="{% url 'updateprder' pk=order.pk %}" style="text-decoration: none;" class="btn btn-info">{{order.status}} </a></td>
+        
+                            
+                        </tr>
+                        </tr>
+        
+                        {% endfor %}
+
+                      
+        
+                      
+                    </tbody>
+                </table>
+        
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock main-content %}

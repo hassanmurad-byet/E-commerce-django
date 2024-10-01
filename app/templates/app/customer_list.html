@@ -1,0 +1,125 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Dashboard {% endblock title %}
+{% block main-content %}
+
+
+
+
+
+<section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+      <div class="menu ">
+        <ul class="list  ">
+          <li class="header">MAIN NAVIGATION</li>
+          <li class="active">
+            <a href="{% url 'dashboard' %}">
+              <i class="material-icons">dashboard</i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+  
+          <li>
+            <a href="{% url 'productlist' %}">
+              <i class="material-icons">inventory_2</i>
+              <span>Product List</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'orderlist' %}" class="">
+              <i class="material-icons"> sort</i>
+              <span>Order List</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'customerlist' %}" class="">
+              <i class="material-icons">manage_accounts</i>
+              <span>Customer</span>
+            </a>
+          </li>
+  
+          <li>
+            <a href="{% url 'userlist' %}" class="">
+              <i class="material-icons">person_add</i>
+              <span>User Account</span>
+            </a>
+          </li>
+  
+          
+          <li>
+            <a href="{% url 'order_report' %}">
+              <i class="material-icons">history</i>
+              <span>Report</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </section>
+  
+  <section class="content" id="top">
+    <div class="container-fluid">
+      <div class="block-header">
+        <h2>DASHBOARD</h2>
+      </div>
+  
+        <div class="row clearfix">
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <div class="header">
+                  <h2>CUSTOMER INFO </h2>
+                </div>
+                <div
+                  class="table-responsive"
+                  style="overflow: auto; max-height: 500px"
+                >
+
+                <table class="table table-hover">
+
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Locality </th>
+                            <th scope="col">City</th>
+                            <th scope="col">Zipcode</th>
+                            <th scope="col">State</th>
+        
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for customer in customers %}
+                        <tr>
+                            <td>{{customer.name}}</td>
+                            <td>{{customer.locality}}</td>
+                            <td>{{customer.city}}</td>
+                            <td>{{customer.zipcode}}</td>
+                            <td>{{customer.state}}</td>
+
+
+                            
+                        </tr>
+                        </tr>
+
+                        {% endfor %}
+
+
+                    </tbody>
+                </table>
+        
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+{% endblock main-content %}

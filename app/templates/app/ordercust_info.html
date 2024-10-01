@@ -1,0 +1,142 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Dashboard {% endblock title %}
+{% block main-content %}
+
+<h2 class="text-center text-danger">Dashboard</h2>
+<div class="container my-5">
+
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="list-group-item-action">
+             
+
+                <!-- <button id="product-button">Product List</button>
+                <button id="customer-button">Customer List</button> -->
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-9 offset-sm-0">
+
+            <div class="row">
+                <p class="btn btn-danger btn-sm">Ordered Customer Informaion</p>
+
+
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Locality </th>
+                            <th scope="col">City</th>
+                            <th scope="col">Zipcode</th>
+                            <th scope="col">State</th>
+                           
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                      
+                        <tr>
+                            <td>{{customers.name}}</td>
+                            <td>{{customers.locality}}</td>
+                            <td>{{customers.city}}</td>
+                            <td>{{customers.zipcode}}</td>
+                            <td>{{customers.state}}</td>
+
+
+                    
+                        </tr>
+                        </tr>
+
+                   
+
+
+                    </tbody>
+                </table>
+
+            </div>
+
+
+
+            <div class="row clearfix">
+                <div class="col-lg-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="header">
+                        <h1> {{customers.name}}'s Order History  </h1>
+                      </div>
+                      <div
+                        class="table-responsive"
+                        style="overflow: auto; max-height: 500px"
+                      >
+      
+                      <table class="table table-hover">
+      
+                          <thead>
+                              <tr>
+                                  <th scope="col">Product Name</th>
+                                  <th scope="col">Category</th>
+                                  <th scope="col">Brand</th>
+                                  <th scope="col">Quantity</th>
+                                  <th scope="col">Product_image</th>
+                                  <th scope="col">Product Price</th>
+                                  <th scope="col">Product Status</th>
+
+                                  <th scope="col">Quantity with Total</th>
+                                 
+                            
+              
+                                 
+              
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {% for order in order_list %}
+                              <tr>
+                                  <td><a href="#" style="text-decoration: none;" class="btn btn-info">{{order.product}}</a></td>
+                                  <td>{{order.cate}}</td>
+                                  <td>{{order.brand}}</td>
+                                  <td>{{order.quantity}}</td>
+
+                                  <td><img src="{{ order.img.url }}" alt="{{order.img}} Image"
+                                    width="100">
+                                  <td><a href="#" style="text-decoration: none;" class="btn btn-info" >{{order.unit_price}}</a></td>
+                                  <td>{{order.status}}</td>
+
+                                  <td>{{order.order_total}}</td>
+                          
+
+
+              
+                                  
+                              </tr>
+                              </tr>
+              
+                              {% endfor %}
+              
+                            
+                          </tbody>
+                      </table>
+                      </div>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock main-content %}

@@ -1,0 +1,101 @@
+
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Payment {% endblock title %}
+{% block main-content %}
+
+
+<div class="row">
+    <div class="col-8">
+      <div class="row mt-5">
+        <div class="col-sm-6">
+        
+        </div>
+        <div class="col-sm-4 offset-sm-1">
+          <h4>Select Shipping Address</h4>
+          <hr>
+          <form action="/paymentdone" >
+            {% for ad in add %}
+            <div class="card">
+              <div class="card-body">
+              <h5>{{ad.name}}</h5>
+              <p>{{ad.locality}}, {{ad.city}}, {{ad.state}} - {{ad.zipcode}}</p>
+              </div>
+            </div>
+              <div class="form-check mt-2 mb-5">
+                <input class="form-check-input" type="radio" name="custid" id="custadd{{forloop.counter}}" value="{{ad.id}}">
+                <label class="form-check-label fw-bold" for="custadd{{forloop.counter}}">
+                  Address: {{forloop.counter}} </label>
+              </div>
+              {% endfor %}
+              <div class="text-end">
+              <div class="d-flex justify-content-center">
+                  <div class="payment-container center">
+                    <h1>bKash Payment</h1>
+                    <p>
+                        <label for="bkashNumber">bKash Number:</label>
+                        <input type="text" id="bkashNumber" name="bkashNumber" required>
+                        <h3 for="bkashNumber"> Amount:{{totalamount}}</h3>
+
+                        <button type="submit">Pay Now</button>
+                    </p>
+                  </div>
+                </div>
+              </div> 
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+<style>
+
+.payment-container {
+    justify-content:center;
+    background-color: white;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.payment-container h1 {
+    margin-bottom: 1em;
+    color:  #fa4b5d;
+}
+
+form label {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    color: #333;
+}
+
+form input {
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    width: 100%;
+    padding: 0.7em;
+    border: none;
+    border-radius: 5px;
+    background-color: #fa4b5d;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #ec1228;
+}
+</style>
+
+
+
+{% endblock main-content %}

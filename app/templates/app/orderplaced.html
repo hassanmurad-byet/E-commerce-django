@@ -1,0 +1,67 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Dashboard {% endblock title %}
+{% block main-content %}
+
+<h2 class="text-center text-danger">Dashboard</h2>
+<div class="container my-5">
+
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="list-group-item-action">
+              
+            </div>
+
+        </div>
+        <div class="col-sm-9 offset-sm-0">
+            <div class="row">
+                <p  class="btn btn-danger btn-sm">Product Status</p>
+                <form action="" method="POST" enctype="multipart/form-data" novalidate  class="form-container">
+                    {% csrf_token %}
+                    {% for fm in form %}
+                    <div class="form-group col-lg-6 mb-3 formss">
+                      {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.error|striptags}}</small>
+                    </div>
+                    {% endfor %}
+                    <div class="btton" >
+                      <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                    </div>
+                  </form>
+                
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+<style>
+    /* Add custom styles here */
+    .form-container {
+ 
+    text-align: center;
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 10px;
+      background-color: rgb(255, 255, 255);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Box shadow */
+    }
+    .formss{
+
+    display:contents;
+    justify-content: center;
+    text-align: center;
+
+    }
+    .btton{
+       margin:40px 20px;
+    }
+  </style>
+
+{% endblock main-content %}
+
+
+  

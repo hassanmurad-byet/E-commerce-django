@@ -1,0 +1,271 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %}Dashboard
+{%endblock title %} {% block main-content %}
+
+<!-- #Top Bar -->
+<section>
+  <!-- Left Sidebar -->
+  <aside id="leftsidebar" class="sidebar">
+    <div class="menu ">
+      <ul class="list  ">
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="active">
+          <a href="{% url 'dashboard' %}">
+            <i class="material-icons">dashboard</i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'productlist' %}">
+            <i class="material-icons">inventory_2</i>
+            <span>Product List</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'orderlist' %}" class="">
+            <i class="material-icons"> sort</i>
+            <span>Order List</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'customerlist' %}" class="">
+            <i class="material-icons">manage_accounts</i>
+            <span>Customer</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'userlist' %}" class="">
+            <i class="material-icons">person_add</i>
+            <span>User Account</span>
+          </a>
+        </li>
+
+       
+        <li>
+          <a href="{% url 'order_report' %}">
+            <i class="material-icons">history</i>
+            <span>Report</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
+<section class="content" id="top">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>DASHBOARD</h2>
+    </div>
+
+    <div class="row clearfix">
+      <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box bg-pink hover-expand-effect">
+          <div class="icon">
+            <a href="{% url 'productlist' %}">
+              <i class="material-icons">inventory_2</i>
+            </a>
+          </div>
+          <div class="content">
+            <div class="text">TOTAL PRODUCT</div>
+            <div><h4 style="margin-top: 5px; font-size: 20px">{{total_product}}</h4></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box bg-light-green hover-expand-effect">
+          <div class="icon">
+            <a href="{% url 'orderlist' %}">
+              <i class="material-icons">storefront</i>
+            </a>
+          </div>
+          <div class="content">
+            <div class="text">Ordered Product</div>
+            <div><h4 style="margin-top: 5px; font-size: 20px">{{total_order}}</h4></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box bg-orange hover-expand-effect">
+          <div class="icon">
+            <a href="{% url 'shipping_complete' %}">
+              <i class="material-icons">local_shipping</i>
+            </a>
+          </div>
+          <div class="content">
+            <div class="text">Shipping Complete</div>
+            <div><h4 style="margin-top: 5px; font-size: 20px">{{shipping_complete}}</h4></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--ddsds-->
+
+    <div class="row clearfix">
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box bg-brown hover-expand-effect">
+          <div class="icon">
+            <a href="{% url 'customerlist' %}">
+              <i class="material-icons">groups</i>
+            </a>
+          </div>
+          <div class="content">
+            <div class="text">Happy Customers</div>
+            <div><h4 style="margin-top: 5px; font-size: 20px">{{total_customer}}</h4></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box bg-blue hover-expand-effect">
+          <div class="icon">
+            <a href="employee/emp_details.php?type=Employee">
+              <i class="material-icons">how_to_reg</i>
+            </a>
+          </div>
+          <div class="content">
+            <div class="text">EMPLOYEES</div>
+            <div><h4 style="margin-top: 5px; font-size: 20px">55</h4></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box bg-light-green hover-expand-effect">
+          <div class="icon">
+            <a href="#">
+              <i class="material-icons">query_stats</i>
+            </a>
+          </div>
+          <div class="content">
+            <div class="text">TOTAL REVENUE</div>
+            <div>
+              <h4 style="margin-top: 5px; font-size: 20px">{{total_revenue}} tk</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="info-box bg-red hover-expand-effect">
+          <div class="icon">
+            <a href="#">
+              <i class="material-icons">paid</i>
+            </a>
+          </div>
+          <div class="content">
+            <div class="text">TODAYS COLLECTION</div>
+            <div><h4 style="margin-top: 5px; font-size: 20px">{{total_price_today}}</h4></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="header">
+                <h2>CUSTOMERS INFO BOARD</h2>
+              </div>
+              <div
+                class="table-responsive"
+                style="overflow: auto; max-height: 475px"
+              >
+                <table class="table table-striped" id="myTable">
+                  <thead>
+                    <tr style="text-align: center">
+                      <th style="text-align: center; width: 10%">
+                        CUSTOMER_ID
+                      </th>
+                      <th style="text-align: center; width: 17%">Name</th>
+                      <th style="text-align: center; width: 17%">LOCALITY</th>
+                      <th style="text-align: center; width: 22%">CITY</th>
+                      <th style="text-align: center; width: 17%">ZIP CODE</th>
+                      <th style="text-align: center; width: 11%">STATE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for customer in customers%}
+                    <tr>
+                      <td style="text-align: center">{{customer.id}}</td>
+                      <td style="text-align: center">{{customer.name}}</td>
+                      <td style="text-align: center">{{customer.locality}}</td>
+                      <td style="text-align: center">{{customer.city}}</td>
+                      <td style="text-align: center">{{customer.zipcode}}</td>
+                      <td style="text-align: center">{{customer.state}}</td>
+                    </tr>
+                    {% endfor 5%}
+                    <tr>
+                      <td
+                        style="
+                          text-align: center;
+                          padding-top: 25px;
+                          font-size: 20px;
+                        "
+                        colspan="7"
+                      >
+                        No any history found
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="header">
+                <h2>RECENT ORDER BOARD</h2>
+              </div>
+              <div
+                class="table-responsive"
+                style="overflow: auto; max-height: 475px"
+              >
+                <table class="table table-striped" id="myTable">
+                  <thead>
+                    <tr style="text-align: center">
+                      <th style="text-align: center; width: 14%">
+                        Customer Id
+                      </th>
+                      <th style="text-align: center; width: 16%">
+                        Customer NAME
+                      </th>
+                      <th style="text-align: center; width: 16%">Product Id</th>
+                      <th style="text-align: center; width: 19%">Quantity</th>
+                      <th style="text-align: center; width: 15%">Order Date</th>
+                      <th style="text-align: center; width: 10%">
+                        Status Update
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for order in orders %}
+
+                    <tr>
+                      <td style="text-align: center">{{order.customer}}</td>
+                      <td style="text-align: center">{{order.user}}</td>
+                      <td style="text-align: center">{{order.product}}</td>
+                      <td style="text-align: center">{{order.quantity}}</td>
+                      <td style="text-align: center">{{order.ordered_date}}</td>
+                      <td style="text-align: center">{{order.status}}</td>
+                    </tr>
+
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock main-content %}

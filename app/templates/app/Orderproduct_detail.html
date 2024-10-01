@@ -1,0 +1,85 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Dashboard {% endblock title %}
+{% block main-content %}
+
+<h2 class="text-center text-danger">Dashboard</h2>
+<div class="container my-5">
+
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="list-group-item-action">
+                <!-- <a href="{% url 'productlist' %}" class="list-group-item list-group-item-action"
+                    aria-current="true">Product List</a>
+                <a href="{% url 'customerlist' %}" class="list-group-item list-group-item-action"
+        aria-current="true">Customer List</a>
+        <a href="{% url 'userlist' %}" class="list-group-item list-group-item-action"
+        aria-current="true">User List</a>
+        <a href="{% url 'orderlist' %}" class="list-group-item list-group-item-action"
+        aria-current="true">Order List</a> -->
+
+                <!-- <button id="product-button">Product List</button>
+                <button id="customer-button">Customer List</button> -->
+
+            </div>
+
+        </div>
+        <div class="col-sm-9 offset-sm-0">
+            <div class="row">
+
+                    <table class="table table-hover">
+                        <p  class="btn btn-danger btn-sm">Ordered Product Informaion</p>
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Specifications</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Selling Price</th>
+                                <th scope="col">availability</th>
+                                <th scope="col">Product Image</th>
+                                
+                                
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        
+                        
+                            <tr>
+                                <td>{{products.id}}</td>
+                                <td>{{products.title}}</td>
+                                <td>{{products.spec}}</td>
+                                <td>{{products.description}}</td>
+                                <td>{{products.category}}</td>
+                                <td>{{products.brand}}</td>
+                                <td>{{products.selling_price}}</td>
+                                <td>{{products.availability}}</td>
+                                <td><img src="{{ products.product_image.url }}" alt="{{ products.title }} Image"
+                                        width="100">
+                                </td>
+                              
+                            
+                            </tr>
+                            </tr>
+                           
+
+
+                          
+                        </tbody>
+                    </table>
+                
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock main-content %}
